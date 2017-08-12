@@ -9,12 +9,43 @@
   <view class="scroll-view">
     <view bindtouchstart="handlerStart" catchtouchmove="handlerMove" bindtouchcancel="handlerCancel" bindtouchend="handlerEnd"  class="scroll-view-wrapper {{!stv.tStart? 'withAnimate': ''}}" style="left: -{{stv.offset}}px">
       <view style="width: {{stv.windowWidth}}px;" wx:for="{{tabs}}" wx:key="unique" class="one-scene">
-        <scroll-view style="height:100%" scroll-y>
+        <scroll-view style="height:100%" scroll-y class='items'>
           <view wx:if="{{index < 1}}">
             <text class="title">找到你感兴趣的小组</text>
+            <ul> 
+            <li>
+              <image class="project" src="/imgs/1.jpg" background-size="cover"></image>
+              <div>
+                <div class="name">
+                  设计夜校
+                </div>
+                <p class="job">自学 职场技能 学长代练</p>
+                <p class="label">
+                  <text>标签</text>
+                  <text>标签</text>
+                </p>
+              </div>
+            </li>
+          </ul>
           </view>
           <view wx:else>
             <text class="title">找到你感兴趣端的小伙伴</text>
+            <ul>
+              <li>
+                <image class="project" src="/imgs/1.jpg" background-size="cover"></image>
+                <div>
+                  <div class="name">
+                    <text>cheeky in china</text>
+                    <text class="link">查看他项目</text>
+                  </div>
+                  <p class="job">design sprint</p>
+                  <p class="label">
+                    <text>标签</text>
+                    <text>标签</text>
+                  </p>
+                </div>
+              </li>
+              </ul>
           </view>
         </scroll-view>
       </view>

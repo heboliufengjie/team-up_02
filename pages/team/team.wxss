@@ -65,3 +65,57 @@
 .title{
   color: #fff;
 }
+.items ul{
+	padding: 15px 15px 15px;
+}
+.items ul li{
+		display:flex;
+		flex-wrap:nowrap;
+		margin-bottom:24px;
+		background-color:#fff;  
+		box-shadow: 0 1px 6px 0 rgba(74,97,127,0.14);
+		border-radius: 4px; 
+		padding:16px 10px; 		   
+}
+.items ul li .project{
+  width:60px;
+  height:60px;
+  display:inline-block;
+  border-radius:50%;
+  margin-right:15px;
+}
+.items ul li >div{
+  width:100%;
+}
+.items ul li .name{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1rem;
+  color: #202020;
+}
+.items ul li .name text{
+  display:inline-block;
+}
+.items ul li .name .link{
+  color: #3C96FF;
+  text-decoration:none;
+  font-size:0.3rem;
+  margin-left:1rem;
+}
+.items ul li .job{
+  font-size:0.3rem;
+  color: #202020;
+  padding:0.25rem 0;
+}
+.items ul li .label{
+  font-size:0.2rem;
+  color: #202020;
+}
+.items ul li .label text{
+    border: 1px solid #8AC0FF;
+    border-radius: 20px;
+    padding:3px 6px;
+    display:inline-block;
+    margin-right:6px;
+}
