@@ -4,7 +4,8 @@
     "pages/logs/logs",
     "pages/login/login",
     "pages/register/register",
-    "pages/forgotPassword/forgotPassword"
+    "pages/forgotPassword/forgotPassword",
+    "pages/team/team"
   ],
   "window":{
     "backgroundTextStyle":"light",

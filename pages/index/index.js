@@ -21,7 +21,7 @@ Page({
   //register
   register: function () {
     wx.navigateTo({
-      url: '../register/register'
+      url: '../team/team'
     })
   },
   onLoad: function () {
