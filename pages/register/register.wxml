@@ -1,0 +1,27 @@
+
+<view class="container">
+  <view class="header">
+    <image class="logo" src="/imgs/1.jpg" background-size="cover"></image>
+    <text class="name">teamUp</text> 
+  </view>
+  <view class="section">
+    <view class="section__title">全名</view>
+    <input name="input" placeholder="请输入全名" />
+  </view>
+  <view class="section">
+    <view class="section__title">邮箱</view>
+    <input password type="text" placeholder="请输入邮箱"/>
+  </view>
+  <view class="section">
+    <view class="section__title">密码</view>
+    <input password type="text" placeholder="请输入密码"/>
+  </view>
+  <view>
+    <button class="login" bindtap="login">注册</button>
+  </view>
+  <view class="other" style='flex-direction:row;justify-content: flex-start;'>
+    <view class="count-null">
+      已有账号？<text bindtap="login">登录</text>
+    </view>
+  </view>
+ </view>
