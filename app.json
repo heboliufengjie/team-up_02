@@ -5,7 +5,8 @@
     "pages/login/login",
     "pages/register/register",
     "pages/forgotPassword/forgotPassword",
-    "pages/team/team"
+    "pages/team/team",
+    "pages/detail/detail"
   ],
   "window":{
     "backgroundTextStyle":"dark",

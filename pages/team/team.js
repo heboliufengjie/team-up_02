@@ -123,5 +123,11 @@ Page({
     //     wx.hideNavigationBarLoading()
     //     wx.stopPullDownRefresh()
     //   })
-  }
+  },
+  //detail
+  detail: function () {
+    wx.navigateTo({
+      url: '../detail/detail'
+    })
+  },
 })

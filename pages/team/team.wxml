@@ -7,44 +7,42 @@
 <!-- 有趣项目 -->
 <scroll-view class="hot-item-container {{currentNavbar==0 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;"
   scroll-y="true" bindscrolltolower="pullUpLoad">
-  <view>
+  <view class='items'>
     <text class="title">找到你感兴趣的小组</text>
-    <ul> 
-      <li>
-      <image class="project" src="/imgs/1.jpg" background-size="cover"></image>
-      <div>
-        <div class="name">
-          设计夜校
-        </div>
-        <p class="job">自学 职场技能 学长代练</p>
-        <p class="label">
-          <text>标签</text>
-          <text>标签</text>
-        </p>
-      </div>
-    </li>
-  </ul>
+    <block wx:for="{{[1, 2, 3]}}">
+      <view class="items-li">
+        <image class="project" src="/imgs/1.jpg" bindtap="detail"></image>
+        <view>
+          <view class="name">设计夜校</view>
+          <view class="job">自学 职场技能 学长代练</view>
+          <view class="label">
+              <text>标签</text>
+              <text>标签</text>
+          </view>
+        </view>
+      </view>
+    </block>
   </view>
 </scroll-view>
 <!-- 优秀小伙伴 -->
 <scroll-view class="latest-item-container {{currentNavbar==1 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;" scroll-y="true" bindscrolltolower="pullUpLoadLatest">
- <view>
- <text class="title">找到你感兴趣端的小伙伴</text>
-  <ul>
-    <li>
-      <image class="project" src="/imgs/1.jpg" background-size="cover"></image>
-      <div>
-        <div class="name">
-          <text>cheeky in china</text>
-          <text class="link">查看他项目</text>
-        </div>
-        <p class="job">design sprint</p>
-        <p class="label">
-          <text>标签</text>
-          <text>标签</text>
-        </p>
-      </div>
-    </li>
-  </ul>
+  <view class='items'>
+    <text class="title">找到你感兴趣端的小伙伴</text>
+    <block wx:for="{{[1, 2, 3]}}">
+      <view class="items-li">
+        <image class="project" src="/imgs/1.jpg" bindtap="detail"></image>
+        <view>
+          <view class="name" style="flex-direction:row;justify-content: space-between;">
+            <text class="text">cheeky in china</text>
+            <text class="link">查看他项目</text>
+          </view>
+          <view class="job">自学 职场技能 学长代练</view>
+          <view class="label">
+              <text>标签</text>
+              <text>标签</text>
+          </view>
+        </view>
+      </view>
+    </block>
   </view>
 </scroll-view>
