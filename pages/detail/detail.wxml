@@ -11,6 +11,18 @@
     <view class="others">
       <text class="name">fengjie.liu</text>
       <text class="job">fe</text>
+      <text class="desc">Someone asked, “What has the greatest strength on earth?”</text>
+      <view class="label">
+        <text>管理经验</text>
+        <text>管理经验</text>
+        <text>管理经验</text>
+        <text>管理经验</text>
+        <text>管理经验</text>
+      </view>
+    </view>
+    <view class="party">
+      <text>3 项目</text>
+      <text>9 小伙伴</text>
     </view>
   </view>
  </view>
