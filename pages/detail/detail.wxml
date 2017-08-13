@@ -1,14 +1,16 @@
 <!--index.wxml-->
 <view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <!-- <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text> -->
-    <image class="logo" src="/imgs/1.jpg" background-size="cover"></image>
-  </view>
-  <view class="usermotto">
-      <view class="flex-wrp" style="flex-direction:row;">
-          <button class="register" bindtap="register">注册</button>
-          <button class="login" bindtap="login">登录</button>
-      </view>
+  <view  bindtap="bindViewTap" class="detail">
+    <view class="top">
+      <image src="/imgs/1.jpg" background-size="cover"></image>
+      <text class="follow">关注＋</text>
+    </view>
+    <view class="header">
+      <image src="/imgs/1.jpg" background-size="cover"></image>
+    </view>
+    <view class="others">
+      <text class="name">fengjie.liu</text>
+      <text class="job">fe</text>
+    </view>
   </view>
  </view>

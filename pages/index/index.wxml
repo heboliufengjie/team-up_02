@@ -7,7 +7,7 @@
   </view>
   <view class="usermotto">
       <view class="flex-wrp" style="flex-direction:row;">
-          <button class="register" bindtap="register">注册</button>
+          <button class="register" bindtap="register">注册1</button>
           <button class="login" bindtap="login">登录</button>
       </view>
   </view>

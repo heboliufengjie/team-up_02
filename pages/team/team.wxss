@@ -76,7 +76,7 @@
   font-size:24rpx;
   width: 60px;
   background: #ccc;
-  margin-left: 42px;
+
 }
 .items .job{
   font-size:26rpx;

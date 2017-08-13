@@ -11,7 +11,7 @@
   "window":{
     "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "teamUp",
+    "navigationBarTitleText": "TEAMUP",
     "navigationBarTextStyle":"black",
     "enablePullDownRefresh": true
   },
@@ -22,14 +22,14 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/team/team",
+        "pagePath": "pages/detail/detail",
         "text": "test"
       }
     ],
     "position":"top",
-    "color": "red",
-    "selectedColor": "green",
-    "backgroundColor": "#ccc",
+    "color": "#ddd",
+    "selectedColor": "#3cc51f",
+    "backgroundColor": "#fff",
     "borderStyle": "white"
   }
 }
