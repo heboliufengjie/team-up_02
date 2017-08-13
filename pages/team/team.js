@@ -1,96 +1,127 @@
+var api = require('../../utils/api.js')
+var app = getApp()
 Page({
-  data:{
-    tabs: ['有趣项目', '优秀小伙伴'],
-    stv: {
-      windowWidth: 0,
-      lineWidth: 0,
-      offset: 0,
-      tStart: false
-    },
-    activeTab: 0
+  data: {
+    systemInfo: {},
+    _api: {},
+    navbar: ['有趣项目', '优秀小伙伴'],
+    currentNavbar: '0',
+    swipers: [],
+    list: [],
+    hot_last_id: 0,
+    latest_list: [],
+    latest_last_id: 0
   },
-  onLoad:function(options){
-   try {
-      let {tabs} = this.data; 
-      var res = wx.getSystemInfoSync()
-      this.windowWidth = res.windowWidth;
-      this.data.stv.lineWidth = this.windowWidth / this.data.tabs.length;
-      this.data.stv.windowWidth = res.windowWidth;
-      this.setData({stv: this.data.stv})
-      this.tabsCount = tabs.length;
-    } catch (e) {
-    }
-  },
-  handlerStart(e) {
-    let {clientX, clientY} = e.touches[0];
-    this.startX = clientX;
-    this.tapStartX = clientX;
-    this.tapStartY = clientY;
-    this.data.stv.tStart = true;
-    this.tapStartTime = e.timeStamp;
-    this.setData({stv: this.data.stv})
-  },
-  handlerMove(e) {
-    let {clientX, clientY} = e.touches[0];
-    let {stv} = this.data;
-    let offsetX = this.startX - clientX;
-    this.startX = clientX;
-    stv.offset += offsetX;
-    if(stv.offset <= 0) {
-      stv.offset = 0;
-    } else if(stv.offset >= stv.windowWidth*(this.tabsCount-1)) {
-      stv.offset = stv.windowWidth*(this.tabsCount-1);
-    }
-    this.setData({stv: stv});
-  },
-  handlerCancel(e) {
 
+  onLoad() {
+    var that = this
+    app.getSystemInfo(function (res) {
+      that.setData({
+        systemInfo: res
+      })
+    })
+
+    that.setData({
+      _api: api
+    })
+
+    this.getSwipers()
+    this.pullUpLoad()
   },
-  handlerEnd(e) {
-    let {clientX, clientY} = e.changedTouches[0];
-    let endTime = e.timeStamp;
-    let {tabs, stv, activeTab} = this.data;
-    let {offset, windowWidth} = stv;
-    //快速滑动
-    if(endTime - this.tapStartTime <= 300) {
-      //向左
-      if(Math.abs(this.tapStartY - clientY) < 50) {
-        if(this.tapStartX - clientX > 5) {
-          if(activeTab < this.tabsCount -1) {
-            this.setData({activeTab: ++activeTab})
-          }
-        } else {
-          if(activeTab > 0) {
-            this.setData({activeTab: --activeTab})
-          }
-        }
-        stv.offset = stv.windowWidth*activeTab;
-      } else {
-        //快速滑动 但是Y距离大于50 所以用户是左右滚动
-        let page = Math.round(offset/windowWidth);
-        if (activeTab != page) {
-          this.setData({activeTab: page})
-        }
-        stv.offset = stv.windowWidth*page;
-      }
-    } else {
-      let page = Math.round(offset/windowWidth);
-      if (activeTab != page) {
-        this.setData({activeTab: page})
-      }
-      stv.offset = stv.windowWidth*page;
+
+  /**
+   *
+   */
+  getSwipers() {
+    api.get(api.SWIPERS)
+      .then(res => {
+        this.setData({
+          swipers: res.data.ads
+        })
+      })
+  },
+
+  /**
+   * 点击跳转详情页
+   */
+  onItemClick(e) {
+    var targetUrl = api.PAGE_WORK
+    if (e.currentTarget.dataset.rowId != null)
+      targetUrl = targetUrl + '?rowId=' + e.currentTarget.dataset.rowId
+    wx.navigateTo({
+      url: targetUrl
+    })
+  },
+
+  /**
+   * 切换 navbar
+   */
+  swichNav(e) {
+    console.log('e', e);
+    this.setData({
+      currentNavbar: e.currentTarget.dataset.idx
+    })
+    if (e.currentTarget.dataset.idx == 1 && this.data.latest_list.length == 0) {
+      this.pullUpLoadLatest()
     }
-    stv.tStart = false;
-    this.setData({stv: this.data.stv})
   },
-  _updateSelectedPage(page) {
-    let {tabs, stv, activeTab} = this.data;
-    activeTab = page;
-    this.setData({activeTab: activeTab})
-    stv.offset = stv.windowWidth*activeTab;
-    this.setData({stv: this.data.stv})
+
+  /**
+   * 下拉刷新
+   */
+  onPullDownRefresh() {
+    console.log('11');
+    switch (this.data.currentNavbar) {
+      case '0':
+        this.setData({
+          list: [],
+          hot_last_id: 0
+        })
+        this.pullUpLoad()
+        break
+      case '1':
+        this.setData({
+          latest_list: [],
+          latest_list_id: 0
+        })
+        this.pullUpLoadLatest()
+        break
+      case '2':
+        wx.stopPullDownRefresh()
+        break
+    }
   },
-  handlerTabTap(e) {
-    this._updateSelectedPage(e.currentTarget.dataset.index);
+
+  /**
+   * [推荐]上拉刷新
+   */
+  pullUpLoad() {
+    wx.showNavigationBarLoading()
+    api.get(api.HOST_IOS + api.HOT + '?last_id=' + this.data.hot_last_id)
+      .then(res => {
+        this.setData({
+          list: this.data.list.concat(res.data.list),
+          hot_last_id: res.data.last_id
+        })
+        wx.hideNavigationBarLoading()
+        wx.stopPullDownRefresh()
+      })
+  },
+
+  /**
+   * [最新]上拉刷新
+   */
+  pullUpLoadLatest() {
+    wx.showNavigationBarLoading()
+    // api.get(api.HOST_IOS + api.LATEST + '?last_id=' + this.data.latest_last_id)
+    //   .then(res => {
+    //     console.log('res',res);
+    //     this.setData({
+    //       latest_list: this.data.latest_list.concat(res.data.list),
+    //       latest_last_id: res.data.last_id
+    //     })
+    //     wx.hideNavigationBarLoading()
+    //     wx.stopPullDownRefresh()
+    //   })
   }
 })

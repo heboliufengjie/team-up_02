@@ -1,54 +1,50 @@
-<view class="stv-container">
-  <view class="tab-bar">
-    <view wx:for="{{tabs}}" wx:key="unique" data-index=
-    "{{index}}" bindtap="handlerTabTap" class="tab {{activeTab==index?'tab-active':''}}" style="width: {{stv.windowWidth/tabs.length}}px">
-      <text>{{item}}</text>
-    </view>
-    <view style="width: {{stv.lineWidth}}px; left: {{stv.offset/tabs.length}}px" class="under-line {{!stv.tStart? 'withAnimate': ''}}"></view>
-  </view>
-  <view class="scroll-view">
-    <view bindtouchstart="handlerStart" catchtouchmove="handlerMove" bindtouchcancel="handlerCancel" bindtouchend="handlerEnd"  class="scroll-view-wrapper {{!stv.tStart? 'withAnimate': ''}}" style="left: -{{stv.offset}}px">
-      <view style="width: {{stv.windowWidth}}px;" wx:for="{{tabs}}" wx:key="unique" class="one-scene">
-        <scroll-view style="height:100%" scroll-y class='items'>
-          <view wx:if="{{index < 1}}">
-            <text class="title">找到你感兴趣的小组</text>
-            <ul> 
-            <li>
-              <image class="project" src="/imgs/1.jpg" background-size="cover"></image>
-              <div>
-                <div class="name">
-                  设计夜校
-                </div>
-                <p class="job">自学 职场技能 学长代练</p>
-                <p class="label">
-                  <text>标签</text>
-                  <text>标签</text>
-                </p>
-              </div>
-            </li>
-          </ul>
-          </view>
-          <view wx:else>
-            <text class="title">找到你感兴趣端的小伙伴</text>
-            <ul>
-              <li>
-                <image class="project" src="/imgs/1.jpg" background-size="cover"></image>
-                <div>
-                  <div class="name">
-                    <text>cheeky in china</text>
-                    <text class="link">查看他项目</text>
-                  </div>
-                  <p class="job">design sprint</p>
-                  <p class="label">
-                    <text>标签</text>
-                    <text>标签</text>
-                  </p>
-                </div>
-              </li>
-              </ul>
-          </view>
-        </scroll-view>
-      </view>
-    </view>
+<view class="navbar">
+  <view class="navbar-item" wx:for="{{navbar}}" wx:for-index="idx" data-idx="{{idx}}" bindtap="swichNav">
+    <text class="navbar-text {{currentNavbar==idx ? 'active' : ''}}">{{item}}</text>
   </view>
 </view>
+
+<!-- 有趣项目 -->
+<scroll-view class="hot-item-container {{currentNavbar==0 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;"
+  scroll-y="true" bindscrolltolower="pullUpLoad">
+  <view>
+    <text class="title">找到你感兴趣的小组</text>
+    <ul> 
+      <li>
+      <image class="project" src="/imgs/1.jpg" background-size="cover"></image>
+      <div>
+        <div class="name">
+          设计夜校
+        </div>
+        <p class="job">自学 职场技能 学长代练</p>
+        <p class="label">
+          <text>标签</text>
+          <text>标签</text>
+        </p>
+      </div>
+    </li>
+  </ul>
+  </view>
+</scroll-view>
+<!-- 优秀小伙伴 -->
+<scroll-view class="latest-item-container {{currentNavbar==1 ? '' : 'hidden'}}" style="height: {{systemInfo.windowHeight}}px;" scroll-y="true" bindscrolltolower="pullUpLoadLatest">
+ <view>
+ <text class="title">找到你感兴趣端的小伙伴</text>
+  <ul>
+    <li>
+      <image class="project" src="/imgs/1.jpg" background-size="cover"></image>
+      <div>
+        <div class="name">
+          <text>cheeky in china</text>
+          <text class="link">查看他项目</text>
+        </div>
+        <p class="job">design sprint</p>
+        <p class="label">
+          <text>标签</text>
+          <text>标签</text>
+        </p>
+      </div>
+    </li>
+  </ul>
+  </view>
+</scroll-view>

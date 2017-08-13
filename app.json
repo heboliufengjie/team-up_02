@@ -8,9 +8,27 @@
     "pages/team/team"
   ],
   "window":{
-    "backgroundTextStyle":"light",
+    "backgroundTextStyle":"dark",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTitleText": "teamUp",
+    "navigationBarTextStyle":"black",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/team/team",
+        "text": "test"
+      }
+    ],
+    "position":"top",
+    "color": "red",
+    "selectedColor": "green",
+    "backgroundColor": "#ccc",
+    "borderStyle": "white"
   }
 }
